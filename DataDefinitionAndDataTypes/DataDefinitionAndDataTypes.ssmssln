@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 14.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P01_CreateDB", "P01_CreateDB\P01_CreateDB.ssmssqlproj", "{229B7099-8E27-4B28-873D-80B3DD9200DE}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P07_P013_People", "P07_P013_People\P07_P013_People.ssmssqlproj", "{C1D31563-9B6B-41CA-BADC-9646869FA24A}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P13_MovieDB", "P13_MovieDB\P13_MovieDB.ssmssqlproj", "{95E7D0A1-C813-4269-95F8-0E83326F30C3}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P14_CarRentalDB", "P14_CarRentalDB\P14_CarRentalDB.ssmssqlproj", "{F89574D9-16DE-4671-8A59-26C57D43D3A6}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P15_HotelDB", "P15_HotelDB\P15_HotelDB.ssmssqlproj", "{61D71C19-94F2-4167-B35B-A0244D891510}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "P16_24_SoftUniBD", "P16_24_SoftUniBD\P16_24_SoftUniBD.ssmssqlproj", "{0E695BCD-B653-432B-A277-EEF8A8E509BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{229B7099-8E27-4B28-873D-80B3DD9200DE}.Default|Default.ActiveCfg = Default
+		{C1D31563-9B6B-41CA-BADC-9646869FA24A}.Default|Default.ActiveCfg = Default
+		{95E7D0A1-C813-4269-95F8-0E83326F30C3}.Default|Default.ActiveCfg = Default
+		{F89574D9-16DE-4671-8A59-26C57D43D3A6}.Default|Default.ActiveCfg = Default
+		{61D71C19-94F2-4167-B35B-A0244D891510}.Default|Default.ActiveCfg = Default
+		{77BCB37C-8256-4B06-8139-327EC8F26E11}.Default|Default.ActiveCfg = Default
+		{0E695BCD-B653-432B-A277-EEF8A8E509BD}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
