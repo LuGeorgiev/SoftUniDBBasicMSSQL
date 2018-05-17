@@ -3,18 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # SQL Server Management Studio Solution File, Format Version 14.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "DEMO", "DEMO\DEMO.ssmssqlproj", "{B17107B5-3C56-494D-A231-A621307DF379}"
-EndProject
-Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Homework", "Homework\Homework.ssmssqlproj", "{DD014F7F-A25B-499F-8128-3B11112C4F62}"
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Demo", "Demo\Demo.ssmssqlproj", "{321523FA-C831-4ECA-A411-1AADD242F2B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B17107B5-3C56-494D-A231-A621307DF379}.Default|Default.ActiveCfg = Default
-		{D4E5468F-EACB-497C-8797-902C7EB92021}.Default|Default.ActiveCfg = Default
-		{DD014F7F-A25B-499F-8128-3B11112C4F62}.Default|Default.ActiveCfg = Default
+		{321523FA-C831-4ECA-A411-1AADD242F2B8}.Default|Default.ActiveCfg = Default
+		{1B34A732-9786-48D5-AB1A-7FEF18833436}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
