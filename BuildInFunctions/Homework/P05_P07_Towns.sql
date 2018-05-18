@@ -1,0 +1,20 @@
+USE SotUni
+
+--P05
+SELECT Name
+FROM Towns
+WHERE LEN(Name)=5 OR LEN(Name)=6
+ORDER BY Name
+
+--P06
+SELECT TownID,Name
+FROM Towns
+WHERE Name LIKE('[MKBE]%')
+ORDER BY Name
+
+--P07
+SELECT TownID,Name
+FROM Towns
+WHERE Name LIKE('[^RBD]%')
+ORDER BY Name
+
