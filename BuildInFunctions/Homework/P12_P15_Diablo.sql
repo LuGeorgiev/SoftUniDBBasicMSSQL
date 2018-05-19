@@ -9,12 +9,19 @@ SELECT TOP(50) Name,
    OR DATEPART(YEAR,[Start])=2012
  ORDER BY Start, [Name]
 
+ --P12 Second way
+ SELECT Name,		
+		FORMAT(Start,'yyyy-MM-dd') AS Start
+FROM Games
+WHERE YEAR(Start) BETWEEN 2011 AND 2012
+ORDER BY Start, Name
+
  --P13
  SELECT Username,
 		RIGHT(Email,LEN(Email)-CHARINDEX('@',Email)) 
 		AS[Email Provider]
  FROM Users
- ORDER BY [Email Provider]
+ ORDER BY [Email Provider],Username
 
  --P14
 
@@ -24,22 +31,23 @@ SELECT TOP(50) Name,
  ORDER BY Username
 
  --P15
- SP_RENAME 'Games.Duration','DurationId','Column'
+ --This is to change teh Column name to DurationId   SP_RENAME 'Games.Duration','DurationId','Column'
  
+
  SELECT *
  FROM Games
 
  SELECT Name AS Game,
 	CASE
-		WHEN DATEPART(HOUR,Start)>=0 AND DATEPART(HOUR,Start)<12 THEN 'Morning'
-		WHEN DATEPART(HOUR,Start)>=12 AND DATEPART(HOUR,Start)<18 THEN 'Afternoon'
+		WHEN DATEPART(HOUR,Start)<12 THEN 'Morning'
+		WHEN DATEPART(HOUR,Start)<18 THEN 'Afternoon'
 		ELSE 'Evening'
 	END AS [Part of the Day],	
 	CASE	
-		WHEN DurationId<=3 THEN 'Extra Short'
-		WHEN DurationId<=6 THEN 'Short'
-		WHEN DurationId>6 THEN 'Long'
+		WHEN Duration<=3 THEN 'Extra Short'
+		WHEN Duration<=6 THEN 'Short'
+		WHEN Duration>6 THEN 'Long'
 		ELSE 'Extra Long'
-	END AS Duration
+	END AS [Duration]
  FROM Games
- ORDER BY Name,DurationId DESC
+ ORDER BY Name,Duration

@@ -55,6 +55,12 @@
           <AssociatedConnUserName />
           <FullPath>P12_P15_Diablo.sql</FullPath>
         </FileNode>
+        <FileNode Name="P16_P17_DataFunc.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:(localdb)\MSSQLLocalDB:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>(localdb)\MSSQLLocalDB</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>P16_P17_DataFunc.sql</FullPath>
+        </FileNode>
       </Items>
     </LogicalFolder>
     <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
