@@ -1,14 +1,14 @@
 UPDATE Employees
 SET Salary*=1.1
 
-SELECT FirstName, LastName, JobTitle, Salary FROM Employees
-ORDER BY Salary DESC
+SELECT Salary FROM Employees
+
 
 --P23
 USE HotelDB
 
 UPDATE Payments
-SET TaxRate-=3
+SET TaxRate*=0.97
 SELECT TaxRate FROM Payments
 
 --P24

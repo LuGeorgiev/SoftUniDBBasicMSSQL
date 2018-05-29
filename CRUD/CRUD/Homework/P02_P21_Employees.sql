@@ -1,4 +1,4 @@
-USE SoftUni
+USE SotUni
 --P02
 SELECT * FROM Departments
 
@@ -64,13 +64,14 @@ SELECT FirstName,LastName
 
 
  --P16
- CREATE VIEW v_EmployeeByFirstLastNameAndSalary AS
+ CREATE VIEW V_EmployeesSalaries AS
  SELECT FirstName,LastName,Salary
  FROM Employees
 
  SELECT * FROM v_EmployeeByFirstLastNameAndSalary
 
  --P17
+ CREATE VIEW V_EmployeeNameJobTitle AS
  SELECT FirstName+' '+ISNULL(MiddleName,'')+' '+LastName AS [Full Name],
 	    JobTitle
    FROM Employees
@@ -80,9 +81,14 @@ SELECT FirstName,LastName
    FROM Employees
 
  --P19
- SELECT TOP(10) Name,Description,StartDate,EndDate
- FROM Projects
- ORDER BY StartDate,Name
+ SELECT TOP(10) 
+		 p.ProjectID AS ID,
+		 Name,
+         Description,
+	     StartDate,
+	     EndDate
+    FROM Projects AS p
+ORDER BY StartDate,Name
  
  --P20
  SELECT TOP (7) FirstName,LastName,HireDate
@@ -98,7 +104,7 @@ SELECT FirstName,LastName
 	SET Salary *=1.12 
  FROM Employees
  WHERE DepartmentID IN (1,2,4,11)
-	GO
+	
  SELECT Salary
    FROM Employees
 

@@ -6,10 +6,10 @@ FROM Peaks
 ORDER BY PeakName
 
 --P23
-SELECT CountryName,Population
+SELECT TOP(30) CountryName,Population
 FROM Countries
 WHERE ContinentCode = 'EU'
-ORDER BY Population DESC
+ORDER BY Population DESC, CountryName
 
 ---P24
 

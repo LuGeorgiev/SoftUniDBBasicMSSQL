@@ -1,24 +1,26 @@
+CREATE DATABASE HotelDB
 USE HotelDB
 
+
 CREATE TABLE Empolyees(
-Id INT NOT NULL,
-FirstNme NVARCHAR(30) NOT NULL,
-LastNAme NVARCHAR(30) NOT NULL,
+Id INT ,
+FirstName NVARCHAR(30) NOT NULL,
+LastName NVARCHAR(30) NOT NULL,
 Title VARCHAR (50) NOT NULL,
 Notes VARCHAR (1000),
 
 CONSTRAINT PK_Id PRIMARY KEY( Id)
 )
 GO
-INSERT INTO Empolyees
+INSERT INTO Empolyees(Id,FirstName,LastName,Title,Notes)
 VALUES
-(1,'Ivan','Petrov','Waiter',NULL),
-(2,'Pavlin','Nikolov','Piccolo',NULL),
-(5,'Marin','Drumev','Receptionist',NULL)
+(1,'Ivan','Petrov','Waiter','asd'),
+(2,'Pavlin','Nikolov','Piccolo','asd'),
+(5,'Marin','Drumev','Receptionist','asd')
 
 
 CREATE TABLE Customers(
-AccountNumber BIGINT PRIMARY KEY,
+AccountNumber INT PRIMARY KEY,
 FirstName NVARCHAR(30) NOT NULL,
 LastName NVARCHAR(30) NOT NULL,
 PhoneNumber VARCHAR(15) NOT NULL,
@@ -28,81 +30,72 @@ Notes VARCHAR(1000)
 )
 
 
-INSERT INTO Customers
+INSERT INTO Customers(AccountNumber,FirstName, LastName,PhoneNumber,EmergencyName,EmergencyNumber, Notes)
 VALUES
-(1,'Ivan','Ivanov','+35129..','MilkaIva','+1000jk',NULL),
-(2,'Мария','Манова','+35239..','Илия','+1000jk',NULL),
-(3,'Иванка','Ивова','+3532119..','Мария','+1000jk',NULL)
+(1,'Ivan','Ivanov','+35129..','MilkaIva','+1000jk','asd'),
+(2,'Мария','Манова','+35239..','Илия','+1000jk','asd'),
+(3,'Иванка','Ивова','+3532119..','Мария','+1000jk','asd')
 
 CREATE TABLE RoomStatus(
 RoomStatus VARCHAR(15) NOT NULL,
 Notes VARCHAR(1000)
 
-CONSTRAINT Un_RoomStat UNIQUE(RoomStatus) 
+CONSTRAINT PK_RoomStat PRIMARY KEY(RoomStatus) 
 )
 
-INSERT INTO RoomStatus
+INSERT INTO RoomStatus(RoomStatus,Notes)
 VALUES
-('Available',NULL),
-('NotAvailable',NULL),
-('InReconstruct', NULL)
-GO
-SELECT* FROM RoomStatus
+('Available','asd'),
+('NotAvailable','asd'),
+('InReconstruct', 'asd')
+
 
 CREATE TABLE RoomTypes(
-RoomTypes VARCHAR(15) NOT NULL,
+RoomType VARCHAR(15) NOT NULL,
 Notes VARCHAR(1000)
 
-CONSTRAINT Un_RoomType UNIQUE(RoomTypes) 
+CONSTRAINT PK_RoomType PRIMARY KEY(RoomType) 
 )
-GO
-INSERT INTO RoomTypes
-VALUES
-('Single',NULL),
-('Double',NULL),
-('Apartment', NULL)
-GO
-SELECT* FROM RoomTypes
 
+INSERT INTO RoomTypes(RoomType,Notes)
+VALUES
+('Single','asd'),
+('Double','asd'),
+('Apartment', 'asd')
 
 CREATE TABLE BedTypes(
-BedTypes VARCHAR(15) NOT NULL,
+BedType VARCHAR(15) NOT NULL,
 Notes VARCHAR(1000)
 
-CONSTRAINT Un_Bedype UNIQUE(BedTypes) 
+CONSTRAINT PK_Bedype PRIMARY KEY(BedType) 
 )
-GO
-INSERT INTO BedTypes
-VALUES
-('Single',NULL),
-('Double',NULL),
-('Large', NULL)
-GO
-SELECT* FROM BedTypes
 
+INSERT INTO BedTypes(BedType,Notes)
+VALUES
+('Single','asd'),
+('Double','asd'),
+('Large', 'asd')
 
 CREATE TABLE Rooms(
-RoomNumber INT PRIMARY KEY IDENTITY(1,1),
-RoomType VARCHAR(15) FOREIGN KEY REFERENCES RoomTypes(RoomTypes),
-BedType VARCHAR(15) FOREIGN KEY REFERENCES BedTypes(BedTypes),
+RoomNumber INT PRIMARY KEY IDENTITY,
+RoomType VARCHAR(15) FOREIGN KEY REFERENCES RoomTypes(RoomType),
+BedType VARCHAR(15) FOREIGN KEY REFERENCES BedTypes(BedType),
 Rate DECIMAL(10,2) NOT NULL,
 RoomStatus VARCHAR(15) FOREIGN KEY REFERENCES RoomStatus(RoomStatus),
 Notes VARCHAR(1000)
 )
-GO
-INSERT INTO Rooms
-VALUES
-('Single','Double',63.34,'Available',NULL),
-('Double','Single',33.34,'NotAvailable',NULL),
-('Single','Double',23.34,'Available',NULL)
 
-SELECT *FROM Rooms
+INSERT INTO Rooms(RoomType,BedType,Rate,RoomStatus,Notes)
+VALUES
+('Single','Double',63.34,'Available','asd'),
+('Double','Single',33.34,'NotAvailable','asd'),
+('Single','Double',23.34,'Available','asd')
 
 CREATE TABLE Payments(
 Id INT PRIMARY KEY IDENTITY(1,1),
 EmployeeId INT FOREIGN KEY REFERENCES Empolyees(Id),
 PaymentDate DATE DEFAULT GETDATE(),
-AccountNumber BIGINT FOREIGN KEY REFERENCES Customers(AccountNumber),
+AccountNumber INT FOREIGN KEY REFERENCES Customers(AccountNumber),
 FirstDateOccupied DATE NOT NULL,
 LastDateOccupied DATE NOT NULL,
 TotalDays INT NOT NULL,
@@ -115,15 +108,15 @@ Notes VARCHAR(1000)
 
 INSERT INTO Payments
 VALUES
-(1,'2018-3-30',1,'2018-4-13','2018-4-15',2, 340.34,2.5,20.2,360,NULL),
-(2,'2018-3-30',2,'2018-1-13','2018-2-15',32, 340.34,2.5,20.2,360,NULL),
-(5,'2018-3-30',3,'2018-1-13','2018-2-15',30, 340.34,2.5,20.2,360,NULL)
+(1,'2018-3-30',1,'2018-4-13','2018-4-15',2, 340.34,2.5,20.2,360,'asd'),
+(2,'2018-3-30',2,'2018-1-13','2018-2-15',32, 340.34,2.5,20.2,360,'asd'),
+(5,'2018-3-30',3,'2018-1-13','2018-2-15',30, 340.34,2.5,20.2,360,'asd')
 
 CREATE TABLE Occupancies(
-Id INT PRIMARY KEY IDENTITY(1,1),
+Id INT PRIMARY KEY IDENTITY,
 EmployeeId INT FOREIGN KEY REFERENCES Empolyees(Id),
 DateOccupied DATE NOT NULL,
-AccountNumber BIGINT FOREIGN KEY REFERENCES Customers(AccountNumber),
+AccountNumber INT FOREIGN KEY REFERENCES Customers(AccountNumber),
 RoomNumber INT FOREIGN KEY REFERENCES Rooms(RoomNumber),
 RateApplied DECIMAL(15,2) NOT NULL,
 PhoneCharge DECIMAL(15,2) NOT NULL,
@@ -132,6 +125,6 @@ Notes VARCHAR(1000)
 
 INSERT INTO Occupancies
 VALUES
-(1,'2018-4-13', 2, 2, 23.34,  23.45,NULL),
-(2,'2018-1-13', 2, 2, 23.34,  23.45,NULL),
-(5,'2018-2-13', 2, 2, 23.34,  23.45,NULL)
+(1,'2018-4-13', 2, 2, 23.34,  23.45,'asd'),
+(2,'2018-1-13', 2, 2, 23.34,  23.45,'asd'),
+(5,'2018-2-13', 2, 2, 23.34,  23.45,'asd')

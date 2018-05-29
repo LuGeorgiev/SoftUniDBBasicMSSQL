@@ -1,9 +1,11 @@
-INSERT INTO Towns (Name)
-VALUES ('Sofia'),
-('Plovdiv'),
-('Varna')
 
-INSERT INTO Minions(Name,Age,TownId)
-VALUES ('Kevin',22,1),
-('BoB',15,3),
-('Steward',3,2)
+INSERT INTO Towns (Id,Name)
+VALUES (1,'Sofia'),
+(2,'Plovdiv'),
+(3,'Varna')
+
+INSERT INTO Minions(ID,Name,Age,TownId)
+VALUES 
+(1,'Kevin',22,1),
+(2,'Bob',15,3),
+(3,'Steward',NULL,2)
