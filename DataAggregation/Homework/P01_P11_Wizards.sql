@@ -22,7 +22,7 @@ GROUP BY w.DepositGroup
  SELECT TOP(2) w.DepositGroup		 
 	FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup
-ORDER BY AVG(w.MagicWandSize)
+ORDER BY AVG(w.MagicWandSize) DESC
 
 --P05
   SELECT DepositGroup,
@@ -102,3 +102,21 @@ SELECT SUM(ResultTable.[Difference]) AS SumDifference
 								WHERE Id = WizDeposits.Id + 1) AS [Difference] 
 		FROM WizzardDeposits AS WizDeposits) AS ResultTable
 
+--Laboratory
+--STEP 1
+SELECT ID,
+	   FirstName,
+	   DepositAmount AS Host,	   
+	   LEAD(DepositAmount,1) OVER(ORDER BY Id ASC ) AS Guest,
+	   DepositAmount-LEAD(DepositAmount,1) OVER(ORDER BY Id ASC ) AS [Difference]
+FROM WizzardDeposits
+
+--FOR JUDGE
+
+SELECT SUM([Difference]) as SumDifference
+FROM 
+(
+	SELECT
+	DepositAmount-LEAD(DepositAmount,1) OVER(ORDER BY Id ASC ) AS [Difference]
+	FROM WizzardDeposits
+) AS Diffs

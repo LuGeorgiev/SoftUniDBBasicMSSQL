@@ -33,13 +33,20 @@ WHERE DepartmentID=1
 	FROM NewTable
 GROUP BY DepartmentID
 
-
---P16
+ 
+--P16 this is not correct
 SELECT DepartmentID,
 MAX(Salary) AS MaxSalary
 FROM Employees
 WHERE NOT Salary BETWEEN 30000 AND 70000
+GROUP BY DepartmentID;
+
+--Laboratory way
+SELECT DepartmentID,
+MAX(Salary) AS MaxSalary
+FROM Employees
 GROUP BY DepartmentID
+HAVING MAX(Salary) NOT BETWEEN 30000 AND 70000;
 
 --P17
 SELECT COUNT(*) AS [Count]
@@ -61,6 +68,19 @@ WHERE ManagerID IS NULL
 				 FETCH NEXT 1 ROWS ONLY) 
 		IS NOT NULL
 GROUP BY DepartmentID
+
+--Laboratory
+
+SELECT DepartmentID,Salary
+FROM
+(
+	SELECT  DepartmentID,Salary,
+			DENSE_RANK() OVER (PARTITION BY DepartmentID ORDER BY Salary DESC) AS Rank
+	FROM Employees
+	GROUP BY DepartmentID, Salary
+	
+) AS RankedSalaries
+WHERE Rank =3
 
 --19
 
