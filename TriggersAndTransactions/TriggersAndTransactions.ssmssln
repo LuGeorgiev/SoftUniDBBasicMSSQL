@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 14.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Part_I_Bank", "Part_I_Bank\Part_I_Bank.ssmssqlproj", "{ECEB3D1D-D336-446A-9004-BAA26B20E9EB}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Part_II_Diablo", "Part_II_Diablo\Part_II_Diablo.ssmssqlproj", "{A1552E72-A700-4C03-820D-5A4B611DFF04}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Part_III_SoftUni", "Part_III_SoftUni\Part_III_SoftUni.ssmssqlproj", "{5E91AE55-D380-46D7-9E64-B455EA87BD84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECEB3D1D-D336-446A-9004-BAA26B20E9EB}.Default|Default.ActiveCfg = Default
+		{92DCFFF4-9F72-46B1-B62E-03882BAF0BD1}.Default|Default.ActiveCfg = Default
+		{A1552E72-A700-4C03-820D-5A4B611DFF04}.Default|Default.ActiveCfg = Default
+		{5E91AE55-D380-46D7-9E64-B455EA87BD84}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

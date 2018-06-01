@@ -1,7 +1,7 @@
 USE Diablo
 GO
 
---P12
+--P12 CANNOT PASS JUDGE
 SELECT TOP(50) Name,
 		CONVERT(DATE,[Start]) AS Start
   FROM Games
@@ -9,12 +9,12 @@ SELECT TOP(50) Name,
    OR DATEPART(YEAR,[Start])=2012
  ORDER BY Start, [Name]
 
- --P12 Second way
- SELECT Name,		
-		FORMAT(Start,'yyyy-MM-dd') AS Start
+ --P12 Secon way for Judge
+ SELECT [Name],		
+		FORMAT(Start,'yyyy-MM-dd') AS [Start Date]
 FROM Games
-WHERE YEAR(Start) BETWEEN 2011 AND 2012
-ORDER BY Start, Name
+WHERE (SELECT YEAR(Start)) IN (2011, 2012)
+ORDER BY [Start Date], [Name]
 
  --P13
  SELECT Username,
