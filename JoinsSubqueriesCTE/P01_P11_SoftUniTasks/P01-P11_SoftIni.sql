@@ -1,12 +1,13 @@
-   
+ use SoftUni  
    --P01
-   SELECT  EmployeeID,
-	 	   JobTitle,
-	   	   e.AddressID,
-		   a.AddressText
+   SELECT TOP(5) EmployeeID AS EmployeeId,
+	 	   JobTitle AS JobTitle,
+	   	   e.AddressID AS AddressId,
+		   a.AddressText AS AddressText
       FROM Employees AS e
 INNER JOIN Addresses AS a
         ON a.AddressID=e.AddressID
+  ORDER BY AddressId
 
 --P02
  SELECT TOP(50)  
@@ -82,7 +83,7 @@ INNER JOIN Departments AS d
 
 --P07
 
-SELECT e.EmployeeID,
+SELECT TOP(5) e.EmployeeID,
 	   e.FirstName,
 	   p.Name AS ProjectName 
 FROM Employees AS e
@@ -98,7 +99,7 @@ SELECT e.EmployeeID,
 	   e.FirstName,
 	   ProjectName=	
 		CASE
-			WHEN p.StartDate >='2005' THEN 'NULL'
+			WHEN p.StartDate >='1.1.2005' THEN NULL
 			ELSE  p.Name
 		END 
    FROM EmployeesProjects AS ep
@@ -144,5 +145,5 @@ AS
 	GROUP BY DepartmentID
 )
 
-SELECT MIN(AVGSalary_CTE.Salary)
+SELECT MIN(AVGSalary_CTE.Salary) AS MinAverageSalary
 FROM AVGSalary_CTE

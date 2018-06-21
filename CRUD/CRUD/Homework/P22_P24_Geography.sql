@@ -27,3 +27,9 @@ USE Diablo
 SELECT Name
 FROM Characters
 ORDER BY Name
+
+--Reconfiguration for EntityFramework
+EXEC sp_configure 'remote access', 0 ;  
+GO  
+RECONFIGURE ;  
+GO  

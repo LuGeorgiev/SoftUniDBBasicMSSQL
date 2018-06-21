@@ -29,8 +29,8 @@ DECLARE @accountId INT
 		SET @newSum =(SELECT Balance FROM inserted)
 		SET @accountId = (SELECT Id FROM inserted)
 
-		INSERT INTO Logs VALUES
-		(@accountId,@oldSum,@newSum)
+		INSERT INTO Logs(AccountID,OldSum,NewSum) 
+		VALUES(@accountId,@oldSum,@newSum)
 	END;
 	
 --TESTS:
@@ -44,29 +44,40 @@ INSERT INTO Accounts VALUES
 --P02
 
 CREATE TABLE NotificationEmails (
-EmailId INT IDENTITY PRIMARY KEY,
-RecepientId INT FOREIGN KEY REFERENCES Accounts(Id),
-Subject VARCHAR(100) NOT NULL,
+Id INT IDENTITY PRIMARY KEY,
+Recepient INT FOREIGN KEY REFERENCES Accounts(Id),
+[Subject] VARCHAR(100) NOT NULL,
 Body VARCHAR(500) NOT NULL
 )
-
 GO
+--Mine approach -Compile Time error in Judge
 CREATE TRIGGER tr_CreateMail ON Logs
-FOR INSERT
+AFTER INSERT
 AS
 BEGIN
 	DECLARE @recepientId INT
 	DECLARE @subject VARCHAR(100)
 	DECLARE @body VARCHAR(500)
-	IF (@@ROWCOUNT= 0)
-		RETURN;
+	
 	SET @recepientId=(SELECT AccountID FROM inserted)
 	SET @subject =CONCAT('Balance change for account: ',(SELECT AccountID FROM inserted))
 	SET @body = CONCAT('On ',GETDATE(),' your balance was changed from ',(SELECT OldSum FROM inserted),' to ',(SELECT NewSum FROM inserted),'.')
 	 
-	INSERT INTO NotificationEmails(RecepientId,Subject,Body)
+	INSERT INTO NotificationEmails(Recepient, [Subject], Body)
 	 VALUES
 	(@recepientId,@subject,@body)
+END
+
+--Colleague's 100/100 decision
+CREATE TRIGGER tr_EmailsNotificationsAfterInsert
+ON Logs AFTER INSERT 
+AS
+BEGIN
+INSERT INTO NotificationEmails(Recipient,Subject,Body)
+SELECT i.AccountID, 
+CONCAT('Balance change for account: ',i.AccountId),
+CONCAT('On ',GETDATE(),' your balance was changed from ',i.NewSum,' to ',i.OldSum)
+  FROM inserted AS i
 END
 
 GO
@@ -83,6 +94,7 @@ END
 
 GO
 --P04
+--Compile erro in judje
 CREATE PROC usp_WithdrawMoney (@accountId INT, @moneyAmount DECIMAL(15,4))
 AS
 BEGIN
@@ -101,6 +113,22 @@ BEGIN
 		WHERE Id=@accountId
 	END
 END;
+--Another approach
+GO
+CREATE PROC usp_WithdrawMoney (@AccountId INT, @MoneyAmount MONEY)
+     AS
+  BEGIN TRANSACTION
+ UPDATE Accounts
+    SET Balance -= @MoneyAmount
+  WHERE Id = @AccountId
+DECLARE @LeftBalance MONEY = (SELECT Balance FROM Accounts WHERE Id = @AccountId)
+	 IF(@LeftBalance < 0)
+	  BEGIN
+	   ROLLBACK
+	   RAISERROR('Not enought money in this account',16,2)
+	   RETURN
+	  END
+COMMIT
 
 GO
 --P05

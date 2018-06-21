@@ -8,7 +8,7 @@ SELECT COUNT(*) AS [Count]
 FROM WizzardDeposits
 
 --P02
-SELECT TOP(1) MagicWandSize AS LongestMAgicWand
+SELECT TOP(1) MagicWandSize AS [LongestMagicWand]
 FROM WizzardDeposits
 ORDER BY MagicWandSize DESC
 
@@ -22,7 +22,7 @@ GROUP BY w.DepositGroup
  SELECT TOP(2) w.DepositGroup		 
 	FROM WizzardDeposits AS w
 GROUP BY w.DepositGroup
-ORDER BY AVG(w.MagicWandSize) DESC
+ORDER BY AVG(w.MagicWandSize)
 
 --P05
   SELECT DepositGroup,

@@ -7,7 +7,7 @@ Name VARCHAR(50) NOT NULL,
 
 CONSTRAINT PK_StudentID PRIMARY KEY (StudentID)
 )
-GO
+
 INSERT INTO Students VALUES
 (1,'Mila'),
 (2,'Toni'),
@@ -19,7 +19,7 @@ Name VARCHAR(50) NOT NULL,
 
 CONSTRAINT PK_ExamID PRIMARY KEY (ExamID)
 )
-GO
+
 INSERT INTO Exams VALUES
 (101,'SpringMVC'),
 (102,'Neo4j'),
@@ -36,7 +36,7 @@ FOREIGN KEY (StudentId) REFERENCES Students(StudentID),
 CONSTRAINT FK_ExamID
 FOREIGN KEY (ExamID) REFERENCES Exams(ExamID)
 )
-GO
+
 INSERT INTO StudentsExams VALUES
 (1,101),
 (1,102),

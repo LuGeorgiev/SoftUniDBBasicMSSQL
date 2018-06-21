@@ -30,8 +30,7 @@ GROUP BY CountryCode
 --P14
 
 SELECT TOP (5)
-		  c.CountryName,
-		  c.CountryCode,
+		  c.CountryName,		  
 		  r.RiverName
      FROM Countries AS c
 LEFT JOIN CountriesRivers AS cr
@@ -100,8 +99,8 @@ ORDER BY HighestPeak DESC, LongestRiverLength DESC,c.CountryName
 
 SELECT TOP(5) CountryName,
 	   ISNULL(PeakName,'(no highest peak)') AS [Highest Peak Name],
-	   ISNULL(MountainRange,'(no mountain)') AS Mountain,
-	   ISNULL( Elevation,0) AS Elevation
+	   ISNULL( Elevation,0) AS [Highest Peak Elevation],
+	   ISNULL(MountainRange,'(no mountain)') AS Mountain
 FROM(
 	SELECT CountryName, Elevation, MountainRange,PeakName,
 		DENSE_RANK() OVER (PARTITION BY CountryName ORDER BY Elevation DESC) AS [Rank]

@@ -15,7 +15,7 @@ CREATE TRIGGER t_FiredEmpoylees ON Employees
 AFTER DELETE
 AS
 BEGIN
-	INSERT INTO Deleted_Employees
+	INSERT INTO Deleted_Employees(FirstName, LastName, MiddleName, JobTitle, DepartmentId, Salary)
 	SELECT FirstName,LastName,MiddleName,JobTitle,DepartmentID,Salary
 	FROM deleted
 END

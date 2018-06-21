@@ -10,7 +10,6 @@ CONSTRAINT FK_EmployeeManager FOREIGN KEY (ManagerID)
 REFERENCES Teachers(TeacherID)
 )
 
-GO
 
 INSERT INTO Teachers VALUES
 ('John', NULL),

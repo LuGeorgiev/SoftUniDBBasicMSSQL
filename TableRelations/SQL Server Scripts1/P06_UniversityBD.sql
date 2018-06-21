@@ -9,7 +9,7 @@ SubjectName VARCHAR(30) NOT NULL,
 
 CONSTRAINT PK_SubjectsId PRIMARY KEY (SubjectID)
 )
-GO
+
 
 CREATE TABLE Majors(
 MajorID INT,
@@ -17,7 +17,7 @@ Name VARCHAR(30) NOT NULL,
 
 CONSTRAINT PK_MajorId PRIMARY KEY (MajorID)
 )
-GO
+
 
 CREATE TABLE Students(
 StudentId INT,
@@ -28,7 +28,7 @@ MajorID INT,
 CONSTRAINT PK_Students PRIMARY KEY(StudentId),
 CONSTRAINT FK_MajorId FOREIGN KEY (MajorID) REFERENCES Majors(MajorId)
 )
-GO
+
 
 CREATE TABLE Agenda(
 StudentId INT,
@@ -38,7 +38,7 @@ CONSTRAINT PK_StudentSubject PRIMARY KEY (StudentId, SubjectId),
 CONSTRAINT FK_StudentId FOREIGN KEY(StudentId) REFERENCES Students(StudentId),
 CONSTRAINT FK_SubjectId FOREIGN KEY(SubjectId) REFERENCES Subjects(SubjectId)
 )
-GO
+
 
 CREATE TABLE Payments(
 PaymentId INT,

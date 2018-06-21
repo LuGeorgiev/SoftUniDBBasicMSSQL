@@ -9,7 +9,7 @@ DECLARE @currentEmpoyeeProj INT
 SET @currentEmpoyeeProj = (SELECT COUNT(*)
 						  	FROM EmployeesProjects
 							WHERE EmployeeID=@emloyeeId)
-IF(@currentEmpoyeeProj>3)
+IF(@currentEmpoyeeProj>=3)
 	RAISERROR('The employee has too many projects!',16,1)
 ELSE
 BEGIN
@@ -18,7 +18,7 @@ BEGIN
 END
 
 GO
---Using Trabsatcions
+--Using Trabsatcions. Compile time error
 
 CREATE OR ALTER PROC usp_AssignProject (@emloyeeId INT, @projectID INT)
 AS
@@ -33,10 +33,28 @@ BEGIN TRANSACTION
 	BEGIN
 		RAISERROR('The employee has too many projects!',16,1)
 		ROLLBACK
-		--RETURN --Probably to be confirmed by Judge
+		RETURN 
 	END
 COMMIT
 END
 	
+--Colleague's Approach
 
-
+CREATE PROC usp_AssignProject(@EmloyeeId INT , @ProjectID INT)
+AS
+BEGIN TRANSACTION
+DECLARE @ProjectsCount INT;
+SET @ProjectsCount = (SELECT COUNT(ProjectID) 
+						FROM EmployeesProjects 
+					   WHERE EmployeeID = @emloyeeId)
+IF(@ProjectsCount >= 3)
+BEGIN 
+ ROLLBACK
+ RAISERROR('The employee has too many projects!', 16, 1)
+ RETURN
+END
+INSERT INTO EmployeesProjects
+     VALUES
+(@EmloyeeId, @ProjectID)
+ 
+ COMMIT
