@@ -1,0 +1,59 @@
+CREATE DATABASE ReportService
+COLLATE Cyrillic_General_100_CI_AI
+
+CREATE TABLE Users(
+Id INT PRIMARY KEY IDENTITY,
+Username NVARCHAR(30) NOT NULL,
+Password NVARCHAR(50) NOT NULL,
+Name NVARCHAR(50),
+Gender CHAR(1),
+BirthDate DATE,
+Age INT,
+Email NVARCHAR(50) NOT NULL,
+CONSTRAINT UQ_Username UNIQUE (Username),
+CONSTRAINT CHK_Gender_Users CHECK(Gender='M' OR Gender='F')
+) 
+
+CREATE TABLE Departments (
+Id INT PRIMARY KEY IDENTITY,
+Name NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Employees(
+Id INT PRIMARY KEY IDENTITY,
+FirstName NVARCHAR(25),
+LastName NVARCHAR(25),
+Gender CHAR(1),
+BirthDate DATE,
+Age INT,
+DepartmentId INT NOT NULL,
+CONSTRAINT FK_Employees_Departments FOREIGN KEY (DepartmentId) REFERENCES Departments(Id),
+CONSTRAINT CHK_Gender_Employee CHECK(Gender='M' OR Gender='F')
+)
+
+CREATE TABLE Categories(
+Id INT PRIMARY KEY IDENTITY,
+Name VARCHAR(50) NOT NULL,
+DepartmentId INT,
+CONSTRAINT FK_Categories_Departments FOREIGN KEY (DepartmentId) REFERENCES Departments(Id)
+)
+
+CREATE TABLE [Status](
+Id INT PRIMARY KEY IDENTITY,
+Label VARCHAR(30) NOT NULL
+)
+
+CREATE TABLE Reports(
+Id INT PRIMARY KEY IDENTITY,
+CategoryId INT NOT NULL,
+StatusId INT NOT NULL,
+OpenDate DATE NOT NULL,
+CloseDate DATE ,
+Description VARCHAR(200),
+UserId INT NOT NULL,
+EmployeeId INT,
+CONSTRAINT FK_Reports_Categories FOREIGN KEY (CategoryId) REFERENCES Categories(Id),
+CONSTRAINT FK_Reports_Status FOREIGN KEY (StatusId) REFERENCES [Status](Id),
+CONSTRAINT FK_Reports_Users FOREIGN KEY (UserId) REFERENCES Users(Id),
+CONSTRAINT FK_Reports_Employees FOREIGN KEY (EmployeeId) REFERENCES Employees(Id)
+)
