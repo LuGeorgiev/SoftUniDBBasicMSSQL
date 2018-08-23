@@ -1,0 +1,65 @@
+CREATE DATABASE RentACAr
+
+USE RentACar
+
+CREATE TABLE Clients(
+Id INT PRIMARY KEY IDENTITY,
+FirstName NVARCHAR(30) NOT NULL,
+LastName NVARCHAR(30) NOT NULL,
+Gender CHAR(1),
+BirthDate DATE,
+CreditCard NVARCHAR(30) NOT NULL,
+CardValidity DATE,
+Email NVARCHAR(50) NOT NULL,
+CONSTRAINT CHK_Gender_Client CHECK(Gender='M' OR Gender='F')
+)
+
+CREATE TABLE Towns(
+Id INT PRIMARY KEY IDENTITY,
+Name NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Offices(
+Id INT PRIMARY KEY IDENTITY,
+Name NVARCHAR(40),
+ParkingPlaces INT,
+TownId INT NOT NULL,
+CONSTRAINT FK_Offices_Towns FOREIGN KEY (TownId) REFERENCES Towns(Id)
+)
+
+CREATE TABLE Models(
+Id INT PRIMARY KEY IDENTITY,
+Manufacturer NVARCHAR(50) NOT NULL,
+Model NVARCHAR(50) NOT NULL,
+ProductionYear DATE,
+Seats INT,
+Class NVARCHAR(10), 
+Consumption DECIMAL(14,2)
+)
+
+CREATE TABLE Vehicles(
+Id INT PRIMARY KEY IDENTITY,
+ModelId INT NOT NULL,
+OfficeId INT NOT NULL,
+Mileage INT,
+CONSTRAINT FK_Vechicle_Model FOREIGN KEY (ModelId) REFERENCES Models(Id),
+CONSTRAINT FK_Vechicle_Office FOREIGN KEY (OfficeId) REFERENCES Offices(Id)
+)
+
+CREATE TABLE Orders(
+Id INT PRIMARY KEY IDENTITY,
+ClientId INT NOT NULL,
+TownId INT NOT NULL,
+VehicleId INT NOT NULL,
+CollectionDate Date NOT NULL,
+CollectionOfficeId INT NOT NULL,
+ReturnDate Date ,
+ReturnOfficeId INT,
+Bill DECIMAL(14,2),
+TotalMileage INT,
+CONSTRAINT FK_Orders_Clients FOREIGN KEY (ClientId) REFERENCES Clients(Id),
+CONSTRAINT FK_Orders_Towns FOREIGN KEY (TownId) REFERENCES Towns(Id),
+CONSTRAINT FK_Orders_Vechicles FOREIGN KEY (VehicleId) REFERENCES Vehicles(Id),
+CONSTRAINT FK_Orders_Office_Collect FOREIGN KEY (CollectionOfficeId) REFERENCES Offices(Id),
+CONSTRAINT FK_Orders_Office_Return FOREIGN KEY (ReturnOfficeId) REFERENCES Offices(Id)
+)
